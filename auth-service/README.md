@@ -1,80 +1,80 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Auth Service - Pedidos Ya
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este microservicio se encarga de toda la lógica de seguridad, autenticación y gestión de usuarios del sistema. Construido con **Nest.js**, proporciona una base sólida y escalable para el control de acceso.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🔑 Funcionalidades
 
-## Description
+- **Autenticación JWT**: Implementación de tokens de acceso y tokens de refresco (Refresh Tokens) para una sesión segura y persistente.
+- **Gestión de Usuarios**: Registro, login y perfil de usuario.
+- **RBAC (Role-Based Access Control)**: Sistema de roles y permisos granulares para proteger los diferentes endpoints.
+- **Seguridad**: Encriptación de contraseñas con **Bcrypt**.
+- **Base de Datos**: Integración con PostgreSQL mediante **TypeORM**.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 Tecnologías
 
-## Installation
+- **Nest.js** (v11)
+- **TypeORM**
+- **Passport.js & JWT**
+- **PostgreSQL**
+- **Bcrypt**
+
+## 🛠️ Instalación
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+## 🏃 Ejecución
 
 ```bash
-# development
-$ npm run start
+# Desarrollo
+npm run start:dev
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# Producción
+npm run start:prod
 ```
 
-## Test
+## 🧪 Pruebas
 
 ```bash
 # unit tests
-$ npm run test
+npm run test
 
 # e2e tests
-$ npm run test:e2e
+npm run test:e2e
 
 # test coverage
-$ npm run test:cov
+npm run test:cov
 
-# unit test con archivo especifico 
-$ npm run test -- resource/roles/roles.controller.spec.ts 
-# ruta a modo de ejemplo, pero iria lo que se quiera probar
+# unit test con archivo específico
+npm run test -- resource/roles/roles.controller.spec.ts 
 ```
 
+## ⛁ Base de Datos y Migraciones
 
-## Para migraciones se ejecuta en este formato 
+El servicio utiliza TypeORM para la gestión de la base de datos.
+
+### Migraciones
 ```bash
-$ npm run migration:generate (opcional la ruta de destino ./src/database/migrations/CreateUser)
+# Generar migración
+npm run migration:generate -- src/database/migrations/NombreMigracion
 
-$ npm run migration:run
-# no hace falta especificar la ruta en este caso
-
+# Ejecutar migraciones
+npm run migration:run
 ```
 
-## Para realizar poblaciones a las BD, debemos rellenar con datos cada uno de los sedeers (permisos.seeder.ts, role.seeder.ts y users.seeder.ts) y luego ejecutamos
-
+### Seeders (Población de datos)
+Para inicializar la base de datos con datos por defecto (permisos, roles y usuarios administrador):
+1. Rellenar los seeders en `src/database/seeders/sedeers/`.
+2. Ejecutar:
 ```bash
-$ npm run seed
+npm run seed
 ```
-Esto directamente ejecuta el archivo seed.ts, el cual se conecta con el seeder.service que tiene los respectivos metodos.
+
+## 🧬 Estructura del Código
+
+- `src/database/core/`: Definición de entidades (User, Role, Permission).
+- `src/jwt/`: Lógica de generación y validación de tokens.
+- `src/middlewares/`: Decoradores y middlewares para control de permisos.
+- `src/resource/`: Controladores y servicios para Usuarios, Roles y Permisos.
+

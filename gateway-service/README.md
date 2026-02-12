@@ -1,59 +1,56 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Gateway Service - Pedidos Ya
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este microservicio actúa como el núcleo de gestión de datos maestros del sistema, manejando información sobre personas y su ubicación geográfica. Construido con **Nest.js**, proporciona una API robusta para la gestión de entidades de negocio.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📦 Funcionalidades
 
-## Description
+- **Gestión Geográfica**: Endpoints para administrar Países, Provincias y Ciudades.
+- **Gestión de Personas**: CRUD completo para el registro y administración de personas.
+- **Microservicios**: Diseñado para interactuar con otros servicios del ecosistema.
+- **Base de Datos**: Integración con PostgreSQL mediante **TypeORM**.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 Tecnologías
 
-## Installation
+- **Nest.js** (v11)
+- **TypeORM**
+- **Axios** (para comunicación inter-service)
+- **PostgreSQL**
+
+## 🛠️ Instalación
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+## 🏃 Ejecución
 
 ```bash
-# development
-$ npm run start
+# Desarrollo
+npm run start:dev
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# Producción
+npm run start:prod
 ```
 
-## Test
+## 🧪 Pruebas
 
 ```bash
 # unit tests
-$ npm run test
+npm run test
 
 # e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run test:e2e
 ```
+
+## 🧬 Estructura del Código
+
+- `src/entities/`: Definición de modelos de datos (Persona, Pais, Provincia, Ciudad).
+- `src/persona/`: Lógica de negocio y controladores para la gestión de personas.
+- `src/pais/`, `src/provincia/`, `src/ciudad/`: Módulos para la gestión geográfica.
+- `src/base-service/`: Clases base para servicios y controladores, promoviendo la reutilización de código.
+
+## 📡 Endpoints Principales
+
+- `GET /persona`: Listado de personas registradas.
+- `GET /pais`, `GET /provincia`, `GET /ciudad`: Endpoints de datos geográficos.
+

@@ -1,52 +1,58 @@
-# PedidosYa
+# Frontend - Pedidos Ya
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
+Interfaz de usuario moderna y responsiva para el ecosistema de Pedidos Ya. Desarrollada con **Angular 20**, esta aplicación ofrece una experiencia de usuario fluida integrando seguridad y gestión de datos en tiempo real.
 
-## Development server
+## ✨ Características Principales
 
-To start a local development server, run:
+- **Dashboard Dinámico**: Gestión de datos maestros con una interfaz intuitiva.
+- **Autenticación Completa**: Vistas de Login, Registro y Recuperación de Contraseña integradas con el Auth Service.
+- **Gestión de Sesión**: Implementación de interceptores para el manejo automático de tokens JWT y renovación de sesiones expiradas.
+- **UI/UX Moderno**: Estilizado con **Tailwind CSS** y componentes interactivos.
+- **Drag & Drop**: Integración de **Swapy** para componentes reposicionables.
 
-```bash
-ng serve
-```
+## 🚀 Tecnologías
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular 20**
+- **Tailwind CSS**
+- **Axios** (Cliente HTTP principal)
+- **Swapy** (Interactividad visual)
+- **Lucide Angular** (Iconografía)
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠️ Instalación
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
-
-To build the project run:
+## 🏃 Ejecución
 
 ```bash
-ng build
+# Servidor de desarrollo
+npm run start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Navega a [http://localhost:4200](http://localhost:4200). La aplicación se recargará automáticamente ante cualquier cambio.
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🧪 Pruebas
 
 ```bash
-ng test
+# Unit tests
+npm run test
 ```
 
-## Running end-to-end tests
+## 📂 Estructura del Proyecto
 
-For end-to-end (e2e) testing, run:
+- `src/app/pages/`: Componentes de página (Login, Register, Home, etc.).
+- `src/api/`: Configuración del cliente Axios e interceptores de seguridad.
+- `src/app/services/`: Servicios globales como `api.service` y `global-status.service`.
+- `src/app/config/`: Configuraciones de entorno y globales.
+
+## 📡 Integración
+
+La aplicación está configurada para conectarse por defecto a:
+- **Auth Service**: `http://localhost:3001`
+- **Gateway Service**: `http://localhost:3000`
+
 
 ```bash
 ng e2e
