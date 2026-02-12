@@ -1,0 +1,84 @@
+<div class="p-4" [class.dark]="themeService.isDarkMode()">
+  <!--Buscador-->
+  <div class="mb-6">
+    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Buscar:</label>
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="filterItems()"
+      placeholder="Buscar por nombre, email o ciudad"
+      class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500
+             dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:ring-blue-600"
+    />
+  </div>
+
+  <!-- Tabla -->
+  <div class="overflow-x-auto rounded-lg border border-gray-300 dark:border-gray-600 shadow">
+    <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-600">
+      <thead class="bg-gray-100 dark:bg-gray-800">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider border-r dark:border-gray-600">Nombre</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider border-r dark:border-gray-600">Email</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider border-r dark:border-gray-600">Fecha Nac.</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider border-r dark:border-gray-600">Ciudad</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider border-r dark:border-gray-600">Provincia</th>
+          <th scope="col" class="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider">País</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-300 dark:bg-gray-900 dark:divide-gray-600">
+        @for (item of itemsPaginados; track item.id){
+          <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/70"
+            (click)="seleccionarFila(item)"
+            [ngClass]="{'bg-blue-200 dark:bg-gray-700': item === selectedItem}">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-100 border-r dark:border-gray-600">{{ item.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 border-r dark:border-gray-600">{{ item.email }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 border-r dark:border-gray-600">{{ formatDate(item.fechaNacimiento) }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 border-r dark:border-gray-600">{{ item.ciudades.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300 border-r dark:border-gray-600">{{ item.ciudades.provincias.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ item.ciudades.provincias.paises.name }}</td>
+          </tr>
+        }
+        @if (itemsPaginados.length === 0){
+          <tr>
+              <td colspan="6" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                  <div class="flex items-center justify-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{{ searchTerm ? 'No hay resultados para tu búsqueda' : 'No hay datos disponibles' }}</span>
+                  </div>
+              </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    </div>
+    <app-paginacion 
+      [paginaActual]="paginaActual" 
+      [totalPaginas]="meta?.totalPages || 1" 
+      (paginaActualChange)="onPaginaCambiada($event)">
+    </app-paginacion>
+    
+    <div class="flex space-x-4 p-4 justify-end">
+      <app-triple-boton 
+        [nombre]="'Persona'"
+        (agregar)="abrirModal()"
+        (modificar)="abrirModalModificar()"
+        (eliminar)="eliminarPersona()"
+      ></app-triple-boton>
+    </div>
+    
+</div>
+
+<app-modal-agregar 
+  [mostrar]="mostrarModal"
+  (cerrarModal)="cerrarModal()"
+  (guardarPersona)="agregarPersona($event)">
+></app-modal-agregar>
+
+<app-modal-modificar
+  [mostrar]="mostrarModalModificar"
+  [persona]="selectedItem"
+  (cerrarModal)="mostrarModalModificar = false"
+  (guardarPersona)="modificarPersona($event)">
+</app-modal-modificar>
