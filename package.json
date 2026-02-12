@@ -1,0 +1,17 @@
+{
+  "name": "mi-sistema-monorepo",
+  "private": true,
+  "workspaces": [
+    "auth-service",
+    "gateway-service",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}
